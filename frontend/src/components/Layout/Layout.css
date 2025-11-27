@@ -1,0 +1,37 @@
+.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  transition: background-color 0.3s ease;
+}
+
+.layout.dark {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.layout-content {
+  display: flex;
+  flex: 1;
+  margin-top: 60px; /* Header高度 */
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+  margin-left: 250px; /* Sidebar宽度 */
+  transition: margin-left 0.3s ease;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .layout-content {
+    flex-direction: column;
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+}

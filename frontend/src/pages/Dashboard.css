@@ -1,0 +1,198 @@
+.dashboard-container {
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.dashboard-header {
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.dashboard-header h2 {
+  margin-bottom: 8px;
+  color: #1890ff;
+  font-weight: 600;
+}
+
+.dashboard-header p {
+  color: #666;
+  font-size: 16px;
+}
+
+.stats-row {
+  margin-bottom: 24px;
+}
+
+.stats-row .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.stats-row .ant-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.charts-row {
+  margin-bottom: 24px;
+}
+
+.chart-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chart-card .ant-card-head {
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.chart-card .ant-card-head-title {
+  font-weight: 600;
+  color: #262626;
+}
+
+.realtime-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 24px;
+}
+
+.realtime-data {
+  height: 200px;
+}
+
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  color: #999;
+  font-size: 16px;
+}
+
+.metrics-row {
+  margin-bottom: 24px;
+}
+
+.metric-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.metric-content {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+}
+
+.metric-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  margin-right: 16px;
+}
+
+.metric-info {
+  flex: 1;
+}
+
+.metric-value {
+  font-size: 24px;
+  font-weight: 600;
+  color: #262626;
+  margin-bottom: 4px;
+}
+
+.metric-label {
+  font-size: 14px;
+  color: #666;
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+}
+
+.loading-container p {
+  margin-top: 16px;
+  color: #666;
+  font-size: 16px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 16px;
+  }
+  
+  .metric-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .metric-icon {
+    margin-right: 0;
+    margin-bottom: 12px;
+  }
+  
+  .metric-value {
+    font-size: 20px;
+  }
+}
+
+/* 图表样式优化 */
+.recharts-wrapper {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+.recharts-tooltip-wrapper {
+  z-index: 1000;
+}
+
+.recharts-default-tooltip {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border: 1px solid #d9d9d9 !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.recharts-legend-wrapper {
+  padding-top: 16px;
+}
+
+/* 动画效果 */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dashboard-container > * {
+  animation: fadeIn 0.6s ease-out;
+}
+
+.dashboard-container > *:nth-child(1) { animation-delay: 0.1s; }
+.dashboard-container > *:nth-child(2) { animation-delay: 0.2s; }
+.dashboard-container > *:nth-child(3) { animation-delay: 0.3s; }
+.dashboard-container > *:nth-child(4) { animation-delay: 0.4s; }
+.dashboard-container > *:nth-child(5) { animation-delay: 0.5s; }

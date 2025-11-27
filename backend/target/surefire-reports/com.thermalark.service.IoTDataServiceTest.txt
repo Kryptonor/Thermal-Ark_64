@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.thermalark.service.IoTDataServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.003 s <<< FAILURE! - in com.thermalark.service.IoTDataServiceTest
+com.thermalark.service.IoTDataServiceTest  Time elapsed: 0.003 s  <<< ERROR!
+java.lang.NoClassDefFoundError: LIoTDataService;
+Caused by: java.lang.ClassNotFoundException: IoTDataService
+

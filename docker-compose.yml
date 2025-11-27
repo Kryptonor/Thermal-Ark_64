@@ -1,0 +1,136 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: thermal_ark
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      timeout: 10s
+      retries: 5
+
+  rabbitmq:
+    image: rabbitmq:3.12-management
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    environment:
+      RABBITMQ_DEFAULT_USER: admin
+      RABBITMQ_DEFAULT_PASS: admin123
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+    healthcheck:
+      test: ["CMD", "rabbitmqctl", "status"]
+      timeout: 30s
+      retries: 5
+
+  fisco-bcos:
+    image: fiscoorg/fiscobcos:latest
+    ports:
+      - "8545:8545"
+      - "20200:20200"
+      - "20201:20201"
+    volumes:
+      - blockchain_data:/fisco-bcos/data
+    environment:
+      - CHAIN_ID=1
+      - GROUP_ID=1
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8545"]
+      timeout: 30s
+      retries: 10
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/thermal_ark
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_REDIS_HOST: redis
+      SPRING_REDIS_PORT: 6379
+      SPRING_RABBITMQ_HOST: rabbitmq
+      SPRING_RABBITMQ_PORT: 5672
+      SPRING_RABBITMQ_USERNAME: admin
+      SPRING_RABBITMQ_PASSWORD: admin123
+      BLOCKCHAIN_NODE_URL: http://fisco-bcos:8545
+      BLOCKCHAIN_CHAIN_ID: 1
+      BLOCKCHAIN_GROUP_ID: 1
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+      fisco-bcos:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      timeout: 10s
+      retries: 5
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80"]
+      timeout: 10s
+      retries: 5
+
+  iot-simulator:
+    build:
+      context: ./iot
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      BACKEND_URL: http://backend:8080
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "node", "-e", "console.log('IoT simulator running')"]
+      timeout: 10s
+      retries: 3
+
+  iot-python:
+    build:
+      context: ./iot-python
+      dockerfile: Dockerfile
+    environment:
+      BACKEND_URL: http://backend:8080
+      DEVICE_ID: smart-heat-meter-001
+      USER_ID: user-001
+    depends_on:
+      - backend
+    healthcheck:
+      test: ["CMD", "python", "-c", "print('Python IoT simulator running')"]
+      timeout: 10s
+      retries: 3
+
+volumes:
+  mysql_data:
+  rabbitmq_data:
+  blockchain_data:

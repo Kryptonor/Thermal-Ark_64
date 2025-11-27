@@ -1,0 +1,25 @@
+.profile-page {
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.profile-page h1 {
+  margin-bottom: 24px;
+  color: #1890ff;
+  font-weight: 600;
+}
+
+.profile-page .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.profile-page .ant-avatar {
+  background-color: #1890ff;
+}
+
+.profile-page .ant-descriptions-item-label {
+  font-weight: 600;
+  background-color: #fafafa;
+}

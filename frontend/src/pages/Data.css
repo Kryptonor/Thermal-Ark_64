@@ -1,0 +1,21 @@
+.data-page {
+  padding: 24px;
+  background-color: #f5f5f5;
+  min-height: 100vh;
+}
+
+.data-page h1 {
+  margin-bottom: 24px;
+  color: #1890ff;
+  font-weight: 600;
+}
+
+.data-page .ant-card {
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.data-page .ant-statistic-content {
+  font-size: 24px;
+  font-weight: 600;
+}

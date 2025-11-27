@@ -1,0 +1,25 @@
+{
+  "name": "thermal-ark-blockchain",
+  "version": "1.0.0",
+  "description": "Blockchain smart contracts for Thermal Ark P2P heat trading system",
+  "main": "index.js",
+  "scripts": {
+    "compile": "node scripts/compile.js",
+    "migrate": "truffle migrate",
+    "test": "truffle test",
+    "deploy:dev": "truffle migrate --network development",
+    "deploy:fisco": "truffle migrate --network fisco",
+    "clean": "rm -rf build deployments"
+  },
+  "dependencies": {
+    "@truffle/hdwallet-provider": "^2.1.0",
+    "web3": "^1.8.0"
+  },
+  "devDependencies": {
+    "truffle": "^5.7.0",
+    "@openzeppelin/contracts": "^4.8.0"
+  },
+  "keywords": ["blockchain", "smart-contract", "energy-trading"],
+  "author": "Thermal Ark Team",
+  "license": "MIT"
+}

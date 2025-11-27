@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.thermalark.service.PaymentServiceTest
+-------------------------------------------------------------------------------
+Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0 s <<< FAILURE! - in com.thermalark.service.PaymentServiceTest
+com.thermalark.service.PaymentServiceTest  Time elapsed: 0 s  <<< ERROR!
+java.lang.NoClassDefFoundError: LPaymentRequest;
+Caused by: java.lang.ClassNotFoundException: PaymentRequest
+

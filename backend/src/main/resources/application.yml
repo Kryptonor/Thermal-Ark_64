@@ -1,0 +1,118 @@
+spring:
+  # 应用配置
+  application:
+    name: thermal-ark-backend
+  
+  # 数据源配置
+  datasource:
+    url: jdbc:mysql://localhost:3306/thermal_ark?useSSL=false&serverTimezone=UTC&characterEncoding=utf8&allowPublicKeyRetrieval=true
+    username: root
+    password: root123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  
+  # JPA配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        format_sql: true
+    open-in-view: false
+  
+  # Redis配置
+  redis:
+    host: localhost
+    port: 6379
+    database: 0
+    timeout: 3000ms
+  
+  # RabbitMQ配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: admin
+    password: admin123
+    virtual-host: /
+    listener:
+      simple:
+        acknowledge-mode: auto
+        retry:
+          enabled: true
+          max-attempts: 3
+          initial-interval: 3000
+  
+  # Web配置
+  web:
+    resources:
+      static-locations: classpath:/static/
+  
+  # 安全配置
+  security:
+    user:
+      name: admin
+      password: admin123
+    oauth2:
+      resourceserver:
+        jwt: true
+
+# 服务器配置
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+# 日志配置
+logging:
+  level:
+    com.thermalark: DEBUG
+    org.springframework.security: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+
+# 区块链配置
+blockchain:
+  fisco-bcos:
+    node-url: http://localhost:8545
+    group-id: 1
+    chain-id: 1
+    contract-address: "0x0000000000000000000000000000000000001001"
+    token-name: "Thermal Energy Token"
+    token-symbol: "TET"
+    token-decimals: 18
+
+# JWT配置
+jwt:
+  secret: thermal-ark-jwt-secret-key-2024-thermal-energy-trading-system
+  expiration: 86400000  # 24小时
+
+# 应用自定义配置
+app:
+  # 交易配置
+  trading:
+    fee-rate: 0.5
+    min-energy-amount: 1.0
+    max-energy-amount: 1000.0
+    price-volatility-limit: 10.0
+  
+  # IoT数据配置
+  iot:
+    data-collection-interval: 60
+    data-retention-days: 30
+  
+  # 钱包配置
+  wallet:
+    initial-balance: 1000.0
+    min-deposit-amount: 10.0
+    min-withdraw-amount: 10.0
+
+# Swagger配置（开发环境）
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
