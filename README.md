@@ -271,9 +271,10 @@ docker-compose -f docker-compose.prod.yml up --build -d
 
 ## 联系方式
 
-- 项目主页: [GitHub Repository]
+- 项目主页: [GitHub Repository](https://github.com/Kryptonor/Thermal-Ark_64)
 - 问题反馈: [Issues]
-- 邮箱: project@example.com
+- 邮箱: PicoDn027@gmail.com
+- 博客：[Personal Blog](www.dnhut.top)
 
 ---
 
