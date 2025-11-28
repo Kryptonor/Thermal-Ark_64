@@ -1,24 +1,29 @@
+/* 导入全局设计变量 */
+@import url('../../pages/Home.css');
+
 .sidebar {
   position: fixed;
-  top: 60px;
+  top: 70px;
   left: 0;
-  width: 250px;
-  height: calc(100vh - 60px);
-  background: white;
-  border-right: 1px solid #e0e0e0;
+  width: 280px;
+  height: calc(100vh - 70px);
+  background: var(--light-surface);
+  border-right: 1px solid rgba(0, 0, 0, 0.05);
   z-index: 999;
-  transition: all 0.3s ease;
+  transition: var(--transition);
   overflow-y: auto;
+  box-shadow: var(--shadow-sm);
+  backdrop-filter: blur(10px);
 }
 
 .dark .sidebar {
-  background: #2d3748;
-  border-right-color: #4a5568;
-  color: white;
+  background: var(--dark-surface);
+  border-right-color: rgba(255, 255, 255, 0.1);
+  color: var(--dark-text);
 }
 
 .sidebar-nav {
-  padding: 20px 0;
+  padding: 2rem 0;
 }
 
 .nav-list {
@@ -34,48 +39,75 @@
 .nav-link {
   display: flex;
   align-items: center;
-  padding: 15px 25px;
+  padding: 1.25rem 2rem;
   text-decoration: none;
-  color: #666;
-  transition: all 0.3s ease;
-  border-left: 3px solid transparent;
+  color: var(--light-text);
+  transition: var(--transition);
+  border-left: 4px solid transparent;
+  position: relative;
+  overflow: hidden;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.nav-link:hover::before {
+  left: 100%;
 }
 
 .nav-link:hover {
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: rgba(102, 126, 234, 0.05);
+  color: var(--primary-gradient);
+  transform: translateX(4px);
 }
 
 .dark .nav-link {
-  color: #cbd5e0;
+  color: var(--dark-text);
 }
 
 .dark .nav-link:hover {
-  background-color: #4a5568;
+  background-color: rgba(102, 126, 234, 0.1);
   color: white;
 }
 
 .nav-link.active {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   color: white;
   border-left-color: #007bff;
+  box-shadow: var(--shadow-md);
 }
 
 .dark .nav-link.active {
-  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%);
+  background: linear-gradient(135deg, var(--dark-surface) 0%, var(--dark-bg) 100%);
   border-left-color: #63b3ed;
 }
 
 .nav-icon {
-  font-size: 18px;
-  margin-right: 15px;
-  width: 20px;
+  font-size: 1.3rem;
+  margin-right: 1rem;
+  width: 24px;
   text-align: center;
+  transition: var(--transition);
+}
+
+.nav-link:hover .nav-icon {
+  transform: scale(1.1);
 }
 
 .nav-label {
-  font-size: 14px;
-  font-weight: 500;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 /* 响应式设计 */
@@ -85,17 +117,17 @@
     height: auto;
     position: static;
     border-right: none;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   }
   
   .sidebar-nav {
-    padding: 10px 0;
+    padding: 1rem 0;
   }
   
   .nav-list {
     display: flex;
     overflow-x: auto;
-    padding: 0 10px;
+    padding: 0 1rem;
   }
   
   .nav-item {
@@ -103,12 +135,12 @@
   }
   
   .nav-link {
-    padding: 10px 15px;
+    padding: 0.75rem 1rem;
     border-left: none;
     border-bottom: 3px solid transparent;
     flex-direction: column;
     text-align: center;
-    min-width: 80px;
+    min-width: 90px;
   }
   
   .nav-link.active {
@@ -118,11 +150,26 @@
   
   .nav-icon {
     margin-right: 0;
-    margin-bottom: 5px;
-    font-size: 16px;
+    margin-bottom: 0.25rem;
+    font-size: 1.2rem;
   }
   
   .nav-label {
-    font-size: 12px;
+    font-size: 0.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-link {
+    min-width: 80px;
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .nav-icon {
+    font-size: 1.1rem;
+  }
+  
+  .nav-label {
+    font-size: 0.75rem;
   }
 }

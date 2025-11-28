@@ -1,27 +1,39 @@
+/* 导入全局设计变量 */
+@import url('../../pages/Home.css');
+
 .layout {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f5f5f5;
-  transition: background-color 0.3s ease;
+  background: var(--light-bg);
+  transition: var(--transition);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
 .layout.dark {
-  background-color: #1a1a1a;
-  color: #ffffff;
+  background: var(--dark-bg);
+  color: var(--dark-text);
 }
 
 .layout-content {
   display: flex;
   flex: 1;
-  margin-top: 60px; /* Header高度 */
+  margin-top: 70px; /* Header高度 */
 }
 
 .main-content {
   flex: 1;
-  padding: 20px;
-  margin-left: 250px; /* Sidebar宽度 */
-  transition: margin-left 0.3s ease;
+  padding: 2rem;
+  margin-left: 280px; /* Sidebar宽度 */
+  transition: var(--transition);
+  min-height: calc(100vh - 70px);
+  background: var(--light-surface);
+  border-radius: var(--border-radius-lg) 0 0 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.dark .main-content {
+  background: var(--dark-surface);
 }
 
 /* 响应式设计 */
